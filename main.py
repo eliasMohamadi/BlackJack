@@ -81,10 +81,10 @@ backHelpButtonRect = backHelpButton.get_rect(topleft = (500, 580))
 backHelpButtonRect = backHelpButtonRect.move(-5000, 0)
 
 plusButton = pygame.image.load("plusButtonIdle.png")
-plusButtonRect = plusButton.get_rect(topleft = (380, 445))
-
+plusButtonRect = plusButton.get_rect(topleft = (810, 445))
+#changed the minus button to left side and plus button to right side
 minusButton = pygame.image.load("minusButtonIdle.png")
-minusButtonRect = minusButton.get_rect(topleft = (810, 445))
+minusButtonRect = minusButton.get_rect(topleft = (380, 445))
 
 gambleButton = pygame.image.load("gambleButtonIdle.png")
 gambleButtonRect = gambleButton.get_rect(topleft = (500, 440))
@@ -95,11 +95,12 @@ hitButtonRect = hitButton.get_rect(topleft = (810, 342))
 standButton = pygame.image.load("standButtonIdle.png")
 standButtonRect = standButton.get_rect(topleft = (160, 342))
 
+#change max and min coordinates
 maxButton = pygame.image.load("maxButtonIdle.png")
-maxButtonRect = maxButton.get_rect(topleft = (180, 450))
+maxButtonRect = maxButton.get_rect(topleft = (920, 450))
 
 minButton = pygame.image.load("minButtonIdle.png")
-minButtonRect = minButton.get_rect(topleft = (920, 450))
+minButtonRect = minButton.get_rect(topleft = (180, 450))
 
 backgroundImageImport = pygame.image.load("betterblackJackBG.png")
 backgroundImage = pygame.transform.scale(backgroundImageImport, (1280, 720))
@@ -865,28 +866,29 @@ while running:
     if GAMESTATE == 3:
         if plusButtonRect.x <= bx <= plusButtonRect.x + 100 and plusButtonRect.y <= by <= plusButtonRect.y + 100:
             plusButton = pygame.image.load("plusButtonSelected.png")
-            screen.blit(plusButton, (380, 445))
+            screen.blit(plusButton, (810, 445))
         else:
             plusButton = pygame.image.load("plusButtonIdle.png")
-            screen.blit(plusButton, (380, 445))
+            screen.blit(plusButton, (810, 445))
         if minusButtonRect.x <= bx <= minusButtonRect.x + 100 and minusButtonRect.y <= by <= minusButtonRect.y + 100:
             minusButton = pygame.image.load("minusButtonSelected.png")
-            screen.blit(minusButton, (810, 445))
+            screen.blit(minusButton, (380, 445))
         else:
             minusButton = pygame.image.load("minusButtonIdle.png")
-            screen.blit(minusButton, (810, 445))
+            screen.blit(minusButton, (380, 445))
         if minButtonRect.x <= bx <= minButtonRect.x + 188 and minButtonRect.y <= by <= minButtonRect.y + 90:
             minButton = pygame.image.load("minButtonSelected.png")
-            screen.blit(minButton, (920, 450))
+            screen.blit(minButton, (180, 450))
         else:
+            #changed min and max button coordinates so that minimum is on left side and max on right
             minButton = pygame.image.load("minButtonIdle.png")
-            screen.blit(minButton, (920, 450))
+            screen.blit(minButton, (180, 450))
         if maxButtonRect.x <= bx <= maxButtonRect.x + 188 and maxButtonRect.y <= by <= maxButtonRect.y + 90:
             maxButton = pygame.image.load("maxButtonSelected.png")
-            screen.blit(maxButton, (180, 450))
+            screen.blit(maxButton, (920, 450))
         else:
             maxButton = pygame.image.load("maxButtonIdle.png")
-            screen.blit(maxButton, (180, 450))
+            screen.blit(maxButton, (920, 450))
         # INVEST button
         if gambleButtonRect.x <= bx <= gambleButtonRect.x + 290 and gambleButtonRect.y <= by <= gambleButtonRect.y + 110:
             gambleButton = pygame.image.load("gambleButtonSelected.png")
