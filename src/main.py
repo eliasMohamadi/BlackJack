@@ -1,6 +1,6 @@
 # Load the previous gaming session if this game was played before.
 disk = ""
-with open("blackjackDisk.txt", mode ="r", encoding ="utf-8") as ls:
+with open("data/blackjackDisk.txt", mode ="r", encoding ="utf-8") as ls:
     disk = ls.read()
 
 import pygame, random, sys
@@ -23,7 +23,7 @@ def cardValue(value):
 
 # Get Splash Text
 lines = ""
-with open("splashes.txt", mode="r", encoding="utf-8") as f:
+with open("data/splashes.txt", mode="r", encoding="utf-8") as f:
     lines = [line.rstrip() for line in f] # stack overflow the goat
 splashNumber = random.randint(0, len(lines) - 1)
 
@@ -55,17 +55,17 @@ pygame.init()
 clock = pygame.time.Clock()
 
 # Sounds
-buttonSound = pygame.mixer.Sound("buttonSound.mp3")
-buttonFailure = pygame.mixer.Sound("buttonFailure.mp3")
+buttonSound = pygame.mixer.Sound("assets/audio/buttonSound.mp3")
+buttonFailure = pygame.mixer.Sound("assets/audio/buttonFailure.mp3")
 
 # Music
-pygame.mixer.music.load("blackjackmusic.mp3")
+pygame.mixer.music.load("assets/audio/blackjackmusic.mp3")
 pygame.mixer.music.play(-1)
 
 # Screen dimensions
 sizex = 1280
 sizey = 720
-importSurf = pygame.image.load("aceofhearts.png")
+importSurf = pygame.image.load("assets/cards/aceofhearts.png")
 icon = pygame.transform.scale(importSurf, (120, 120))
 screen = pygame.display.set_mode((sizex, sizey))
 
@@ -76,41 +76,41 @@ pygame.display.set_icon(icon)
 running = True
 screen.fill((70, 44, 20))
 
-backHelpButton = pygame.image.load("backHelpButtonIdle.png").convert()
+backHelpButton = pygame.image.load("assets/buttons/backHelpButtonIdle.png").convert()
 backHelpButtonRect = backHelpButton.get_rect(topleft = (500, 580))
 backHelpButtonRect = backHelpButtonRect.move(-5000, 0)
 
-plusButton = pygame.image.load("plusButtonIdle.png")
+plusButton = pygame.image.load("assets/buttons/plusButtonIdle.png")
 plusButtonRect = plusButton.get_rect(topleft = (810, 445))
 #changed the minus button to left side and plus button to right side
-minusButton = pygame.image.load("minusButtonIdle.png")
+minusButton = pygame.image.load("assets/buttons/minusButtonIdle.png")
 minusButtonRect = minusButton.get_rect(topleft = (380, 445))
 
-gambleButton = pygame.image.load("gambleButtonIdle.png")
+gambleButton = pygame.image.load("assets/buttons/gambleButtonIdle.png")
 gambleButtonRect = gambleButton.get_rect(topleft = (500, 440))
 
-hitButton = pygame.image.load("hitButtonIdle.png")
+hitButton = pygame.image.load("assets/buttons/hitButtonIdle.png")
 hitButtonRect = hitButton.get_rect(topleft = (810, 342))
 
-standButton = pygame.image.load("standButtonIdle.png")
+standButton = pygame.image.load("assets/buttons/standButtonIdle.png")
 standButtonRect = standButton.get_rect(topleft = (160, 342))
 
 #change max and min coordinates
-maxButton = pygame.image.load("maxButtonIdle.png")
+maxButton = pygame.image.load("assets/buttons/maxButtonIdle.png")
 maxButtonRect = maxButton.get_rect(topleft = (920, 450))
 
-minButton = pygame.image.load("minButtonIdle.png")
+minButton = pygame.image.load("assets/buttons/minButtonIdle.png")
 minButtonRect = minButton.get_rect(topleft = (180, 450))
 
-backgroundImageImport = pygame.image.load("betterblackJackBG.png")
+backgroundImageImport = pygame.image.load("assets/backgrounds/betterblackJackBG.png")
 backgroundImage = pygame.transform.scale(backgroundImageImport, (1280, 720))
-backgroundImageImportClone = pygame.image.load("betterblackJackBG.png").convert_alpha()
+backgroundImageImportClone = pygame.image.load("assets/backgrounds/betterblackJackBG.png").convert_alpha()
 backgroundImageClone = pygame.transform.scale(backgroundImageImportClone, (1280, 720))
 
-loseScreenImport = pygame.image.load("ambition.png")
+loseScreenImport = pygame.image.load("assets/branding/ambition.png")
 loseScreen = pygame.transform.scale(loseScreenImport, (1280, 720))
 
-playScreenImport = pygame.image.load("playScreen.png")
+playScreenImport = pygame.image.load("assets/backgrounds/playScreen.png")
 playScreen = pygame.transform.scale(playScreenImport, (1280, 720))
 
 splashFont = pygame.font.Font(None, 40)
@@ -144,10 +144,10 @@ while running:
         screen.blit(backgroundImage, (0, 0))
         screen.blit(backgroundImageClone, (0, 0))
         balanceText = balanceFont.render(str(MENU_MONEY), True, (255, 255, 255))
-        titleSurf = pygame.image.load("blackjacklogo.png").convert_alpha()
-        playButton = pygame.image.load("playButtonIdle.png").convert()
-        helpButton = pygame.image.load("helpButtonIdle.png").convert()
-        creditButton = pygame.image.load("creditsButtonIdle.png").convert()
+        titleSurf = pygame.image.load("assets/branding/blackjacklogo.png").convert_alpha()
+        playButton = pygame.image.load("assets/buttons/playButtonIdle.png").convert()
+        helpButton = pygame.image.load("assets/buttons/helpButtonIdle.png").convert()
+        creditButton = pygame.image.load("assets/buttons/creditsButtonIdle.png").convert()
         playButtonRect = playButton.get_rect(topleft = (500, 300))
         helpButtonRect = helpButton.get_rect(topleft = (190, 305))
         creditButtonRect = creditButton.get_rect(topleft = (820, 305))
@@ -318,19 +318,21 @@ while running:
             dealerCardRect2 = pygame.Rect(-232, 175, 60, 150)
             playerCardRect1 = pygame.Rect(1399, 467, 60, 150)
             playerCardRect2 = pygame.Rect(1428, 467, 60, 150)
-            dealerCard1 = pygame.image.load(str(dealerDraw[0]) + ".png").convert_alpha()
+
+
+            dealerCard1 = pygame.image.load("assets/cards/" + str(dealerDraw[0]) + ".png").convert_alpha()
             pygame.transform.scale(dealerCard1, (60, 150))
-            dealerCard2 = pygame.image.load(str(dealerDraw[1]) + ".png").convert_alpha()
+            dealerCard2 = pygame.image.load("assets/cards/" + str(dealerDraw[1]) + ".png").convert_alpha()
             pygame.transform.scale(dealerCard2, (60, 150))
-            playerCard2 = pygame.image.load(str(playerDraw[1]) + ".png").convert_alpha()
+            playerCard2 = pygame.image.load("assets/cards/" + str(playerDraw[1]) + ".png").convert_alpha()
             pygame.transform.scale(playerCard2, (60, 150))
             firstTime = 0
         screen.blit(dealerCard1, dealerCardRect1.topleft)
-        dealerCard1cover = pygame.image.load("backofcards.png").convert_alpha()
+        dealerCard1cover = pygame.image.load("assets/cards/backofcards.png").convert_alpha()
         pygame.transform.scale(dealerCard1cover, (60, 150))
         if not(reveal):
             screen.blit(dealerCard1cover, dealerCardRect1.topleft)
-        playerCard1 = pygame.image.load(str(playerDraw[0]) + ".png").convert_alpha()
+        playerCard1 = pygame.image.load("assets/cards/" + str(playerDraw[0]) + ".png").convert_alpha()
         pygame.transform.scale(playerCard1, (60, 150))
         screen.blit(playerCard1, playerCardRect1.topleft)
         if not(dealerCardRect1.collidepoint((1114, 175))) and not(reveal):
@@ -355,39 +357,39 @@ while running:
                 hitCount += 1
                 if hitCount == 3:
                     playerCardRect3 = pygame.Rect(1428, 467, 60, 150)
-                    playerCard3 = pygame.image.load(str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
+                    playerCard3 = pygame.image.load("assets/cards/" + str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
                     pygame.transform.scale(playerCard3, (60, 150))
                 elif hitCount == 4:
                     playerCardRect4 = pygame.Rect(1428, 467, 60, 150)
-                    playerCard4 = pygame.image.load(str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
+                    playerCard4 = pygame.image.load("assets/cards/" + str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
                     pygame.transform.scale(playerCard4, (60, 150))
                 elif hitCount == 5:
                     playerCardRect5 = pygame.Rect(1428, 467, 60, 150)
-                    playerCard5 = pygame.image.load(str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
+                    playerCard5 = pygame.image.load("assets/cards/" + str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
                     pygame.transform.scale(playerCard5, (60, 150))
                 elif hitCount == 6:
                     playerCardRect6 = pygame.Rect(1428, 467, 60, 150)
-                    playerCard6 = pygame.image.load(str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
+                    playerCard6 = pygame.image.load("assets/cards/" + str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
                     pygame.transform.scale(playerCard6, (60, 150))
                 elif hitCount == 7:
                     playerCardRect7 = pygame.Rect(1428, 467, 60, 150)
-                    playerCard7 = pygame.image.load(str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
+                    playerCard7 = pygame.image.load("assets/cards/" + str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
                     pygame.transform.scale(playerCard7, (60, 150))
                 elif hitCount == 8:
                     playerCardRect8 = pygame.Rect(1428, 467, 60, 150)
-                    playerCard8 = pygame.image.load(str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
+                    playerCard8 = pygame.image.load("assets/cards/" + str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
                     pygame.transform.scale(playerCard8, (60, 150))
                 elif hitCount == 9:
                     playerCardRect9 = pygame.Rect(1428, 467, 60, 150)
-                    playerCard9 = pygame.image.load(str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
+                    playerCard9 = pygame.image.load("assets/cards/" + str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
                     pygame.transform.scale(playerCard9, (60, 150))
                 elif hitCount == 10:
                     playerCardRect10 = pygame.Rect(1428, 467, 60, 150)
-                    playerCard10 = pygame.image.load(str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
+                    playerCard10 = pygame.image.load("assets/cards/" + str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
                     pygame.transform.scale(playerCard10, (60, 150))
                 elif hitCount == 11:
                     playerCardRect11 = pygame.Rect(1428, 467, 60, 150)
-                    playerCard11 = pygame.image.load(str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
+                    playerCard11 = pygame.image.load("assets/cards/" + str(playerDraw[len(playerDraw) - 1]) + ".png").convert_alpha()
                     pygame.transform.scale(playerCard11, (60, 150))
             if playerValue >= 21:
                 stand = 1
@@ -486,35 +488,35 @@ while running:
             dealerText3 = dealerFont.render("My current value is " + str(dealerValue) + ".", True, (0, 255, 0))
             if dealerHitCount == 3:
                 dealerCardRect3 = pygame.Rect(-232, 175, 60, 150)
-                dealerCard3 = pygame.image.load(str(dealerDraw[len(dealerDraw) - 1]) + ".png").convert_alpha()
+                dealerCard3 = pygame.image.load("assets/cards/" + str(dealerDraw[len(dealerDraw) - 1]) + ".png").convert_alpha()
                 pygame.transform.scale(dealerCard3, (60, 150))
             elif dealerHitCount == 4:
                 dealerCardRect4 = pygame.Rect(-232, 175, 60, 150)
-                dealerCard4 = pygame.image.load(str(dealerDraw[len(dealerDraw) - 1]) + ".png").convert_alpha()
+                dealerCard4 = pygame.image.load("assets/cards/" + str(dealerDraw[len(dealerDraw) - 1]) + ".png").convert_alpha()
                 pygame.transform.scale(dealerCard4, (60, 150))
             elif dealerHitCount == 5:
                 dealerCardRect5 = pygame.Rect(-232, 175, 60, 150)
-                dealerCard5 = pygame.image.load(str(dealerDraw[len(dealerDraw) - 1]) + ".png").convert_alpha()
+                dealerCard5 = pygame.image.load("assets/cards/" + str(dealerDraw[len(dealerDraw) - 1]) + ".png").convert_alpha()
                 pygame.transform.scale(dealerCard5, (60, 150))
             elif dealerHitCount == 6:
                 dealerCardRect6 = pygame.Rect(-232, 175, 60, 150)
-                dealerCard6 = pygame.image.load(str(dealerDraw[len(dealerDraw) - 1]) + ".png").convert_alpha()
+                dealerCard6 = pygame.image.load("assets/cards/" + str(dealerDraw[len(dealerDraw) - 1]) + ".png").convert_alpha()
                 pygame.transform.scale(dealerCard6, (60, 150))
             elif dealerHitCount == 7:
                 dealerCardRect7 = pygame.Rect(-232, 175, 60, 150)
-                dealerCard7 = pygame.image.load(str(dealerDraw[len(dealerDraw) - 1]) + ".png").convert_alpha()
+                dealerCard7 = pygame.image.load("assets/cards/" + str(dealerDraw[len(dealerDraw) - 1]) + ".png").convert_alpha()
                 pygame.transform.scale(dealerCard7, (60, 150))
             elif dealerHitCount == 8:
                 dealerCardRect8 = pygame.Rect(-232, 175, 60, 150)
-                dealerCard8 = pygame.image.load(str(dealerDraw[len(dealerDraw) - 1]) + ".png").convert_alpha()
+                dealerCard8 = pygame.image.load("assets/cards/" + str(dealerDraw[len(dealerDraw) - 1]) + ".png").convert_alpha()
                 pygame.transform.scale(dealerCard8, (60, 150))
             elif dealerHitCount == 9:
                 dealerCardRect9 = pygame.Rect(-232, 175, 60, 150)
-                dealerCard9 = pygame.image.load(str(dealerDraw[len(dealerDraw) - 1]) + ".png").convert_alpha()
+                dealerCard9 = pygame.image.load("assets/cards/" + str(dealerDraw[len(dealerDraw) - 1]) + ".png").convert_alpha()
                 pygame.transform.scale(dealerCard9, (60, 150))
             elif dealerHitCount == 10:
                 dealerCardRect10 = pygame.Rect(-232, 175, 60, 150)
-                dealerCard10 = pygame.image.load(str(dealerDraw[len(dealerDraw) - 1]) + ".png").convert_alpha()
+                dealerCard10 = pygame.image.load("assets/cards/" + str(dealerDraw[len(dealerDraw) - 1]) + ".png").convert_alpha()
                 pygame.transform.scale(dealerCard10, (60, 150))
             if dealerValue >= 17:
                 hitOrStand = "stand"
@@ -642,7 +644,7 @@ while running:
             print("Your current bank balance is $" + str(gameMoney) + "0.")
             # Save the current gaming session if this game is exited.
             save = str(gameMoney)
-            with open("blackjackDisk.txt", mode ="w", encoding ="utf-8") as sl:
+            with open("data/blackjackDisk.txt", mode ="w", encoding ="utf-8") as sl:
                 sl.write(save)
             pygame.quit()
             sys.exit(0)
@@ -651,7 +653,7 @@ while running:
             print("Your current bank balance is $" + str(gameMoney) + "0.")
             # Save the current gaming session if this game is exited.
             save = str(gameMoney)
-            with open("blackjackDisk.txt", mode ="w", encoding ="utf-8") as sl:
+            with open("data/blackjackDisk.txt", mode ="w", encoding ="utf-8") as sl:
                 sl.write(save)
             pygame.quit()
             sys.exit(0)
@@ -836,78 +838,78 @@ while running:
     if GAMESTATE == 0:
         # PLAY button
         if playButtonRect.x <= bx <= playButtonRect.x + 300 and playButtonRect.y <= by <= playButtonRect.y + 120:
-            playButton = pygame.image.load("playButtonSelected.png").convert()
+            playButton = pygame.image.load("assets/buttons/playButtonSelected.png").convert()
             screen.blit(playButton, (500, 300))
         else:
-            playButton = pygame.image.load("playButtonIdle.png").convert()
+            playButton = pygame.image.load("assets/buttons/playButtonIdle.png").convert()
             screen.blit(playButton, (500, 300))
         # HELP button
         if helpButtonRect.x <= bx <= helpButtonRect.x + 290 and helpButtonRect.y <= by <= helpButtonRect.y + 110:
-            helpButton = pygame.image.load("helpButtonSelected.png").convert()
+            helpButton = pygame.image.load("assets/buttons/helpButtonSelected.png").convert()
             screen.blit(helpButton, (190, 305))
         else:
-            helpButton = pygame.image.load("helpButtonIdle.png").convert()
+            helpButton = pygame.image.load("assets/buttons/helpButtonIdle.png").convert()
             screen.blit(helpButton, (190, 305))
         # CREDIT button
         if creditButtonRect.x <= bx <= creditButtonRect.x + 290 and creditButtonRect.y <= by <= creditButtonRect.y + 110:
-            creditButton = pygame.image.load("creditsButtonSelected.png").convert()
+            creditButton = pygame.image.load("assets/buttons/creditsButtonSelected.png").convert()
             screen.blit(creditButton, (820, 305))
         else:
-            creditButton = pygame.image.load("creditsButtonIdle.png").convert()
+            creditButton = pygame.image.load("assets/buttons/creditsButtonIdle.png").convert()
             screen.blit(creditButton, (820, 305))
     # BACK button
     if GAMESTATE == 1 or GAMESTATE == 2 or GAMESTATE == 3:
         if backHelpButtonRect.x <= bx <= backHelpButtonRect.x + 290 and backHelpButtonRect.y <= by <= backHelpButtonRect.y + 110:
-            backHelpButton = pygame.image.load("backHelpButtonSelected.png").convert()
+            backHelpButton = pygame.image.load("assets/buttons/backHelpButtonSelected.png").convert()
             screen.blit(backHelpButton, (500, 580))
         else:
-            backHelpButton = pygame.image.load("backHelpButtonIdle.png")
+            backHelpButton = pygame.image.load("assets/buttons/backHelpButtonIdle.png")
             screen.blit(backHelpButton, (500, 580))
     if GAMESTATE == 3:
         if plusButtonRect.x <= bx <= plusButtonRect.x + 100 and plusButtonRect.y <= by <= plusButtonRect.y + 100:
-            plusButton = pygame.image.load("plusButtonSelected.png")
+            plusButton = pygame.image.load("assets/buttons/plusButtonSelected.png")
             screen.blit(plusButton, (810, 445))
         else:
-            plusButton = pygame.image.load("plusButtonIdle.png")
+            plusButton = pygame.image.load("assets/buttons/plusButtonIdle.png")
             screen.blit(plusButton, (810, 445))
         if minusButtonRect.x <= bx <= minusButtonRect.x + 100 and minusButtonRect.y <= by <= minusButtonRect.y + 100:
-            minusButton = pygame.image.load("minusButtonSelected.png")
+            minusButton = pygame.image.load("assets/buttons/minusButtonSelected.png")
             screen.blit(minusButton, (380, 445))
         else:
-            minusButton = pygame.image.load("minusButtonIdle.png")
+            minusButton = pygame.image.load("assets/buttons/minusButtonIdle.png")
             screen.blit(minusButton, (380, 445))
         if minButtonRect.x <= bx <= minButtonRect.x + 188 and minButtonRect.y <= by <= minButtonRect.y + 90:
-            minButton = pygame.image.load("minButtonSelected.png")
+            minButton = pygame.image.load("assets/buttons/minButtonSelected.png")
             screen.blit(minButton, (180, 450))
         else:
             #changed min and max button coordinates so that minimum is on left side and max on right
-            minButton = pygame.image.load("minButtonIdle.png")
+            minButton = pygame.image.load("assets/buttons/minButtonIdle.png")
             screen.blit(minButton, (180, 450))
         if maxButtonRect.x <= bx <= maxButtonRect.x + 188 and maxButtonRect.y <= by <= maxButtonRect.y + 90:
-            maxButton = pygame.image.load("maxButtonSelected.png")
+            maxButton = pygame.image.load("assets/buttons/maxButtonSelected.png")
             screen.blit(maxButton, (920, 450))
         else:
-            maxButton = pygame.image.load("maxButtonIdle.png")
+            maxButton = pygame.image.load("assets/buttons/maxButtonIdle.png")
             screen.blit(maxButton, (920, 450))
         # INVEST button
         if gambleButtonRect.x <= bx <= gambleButtonRect.x + 290 and gambleButtonRect.y <= by <= gambleButtonRect.y + 110:
-            gambleButton = pygame.image.load("gambleButtonSelected.png")
+            gambleButton = pygame.image.load("assets/buttons/gambleButtonSelected.png")
             screen.blit(gambleButton, (500, 440))
         else:
-            gambleButton = pygame.image.load("gambleButtonIdle.png")
+            gambleButton = pygame.image.load("assets/buttons/gambleButtonIdle.png")
             screen.blit(gambleButton, (500, 440))
     if GAMESTATE == 4:
         if hitButtonRect.x <= bx <= hitButtonRect.x + 290 and hitButtonRect.y <= by <= hitButtonRect.y + 110:
-            hitButton = pygame.image.load("hitButtonSelected.png")
+            hitButton = pygame.image.load("assets/buttons/hitButtonSelected.png")
             screen.blit(hitButton, (hitButtonRect.x, hitButtonRect.y))
         else:
-            hitButton = pygame.image.load("hitButtonIdle.png")
+            hitButton = pygame.image.load("assets/buttons/hitButtonIdle.png")
             screen.blit(hitButton, (hitButtonRect.x, hitButtonRect.y))
         if standButtonRect.x <= bx <= standButtonRect.x + 290 and standButtonRect.y <= by <= standButtonRect.y + 110:
-            standButton = pygame.image.load("standButtonSelected.png")
+            standButton = pygame.image.load("assets/buttons/standButtonSelected.png")
             screen.blit(standButton, (standButtonRect.x, standButtonRect.y))
         else:
-            standButton = pygame.image.load("standButtonIdle.png")
+            standButton = pygame.image.load("assets/buttons/standButtonIdle.png")
             screen.blit(standButton, (standButtonRect.x, standButtonRect.y))
     # Update the display every frame
     pygame.display.flip()
