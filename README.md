@@ -36,19 +36,20 @@ This allowed the project to have its own visual identity rather than relying on 
 - **Pygame**
 - **Git / GitHub**
 
-## 📸 Screenshots
-
 ### Main Menu
 
-_Add screenshot here_
+<img width="1278" height="750" alt="image" src="https://github.com/user-attachments/assets/e8ee558a-33ad-4107-8e3c-6465735766df" />
+
 
 ### Gameplay
 
-_Add screenshot here_
+<img width="1279" height="750" alt="image" src="https://github.com/user-attachments/assets/9203d9c1-ce0f-4c5e-b7db-c12a72b69f50" />
+
 
 ### Betting / Game Interface
 
-_Add screenshot here_
+<img width="1278" height="749" alt="image" src="https://github.com/user-attachments/assets/58e11376-04f7-4d8e-b015-4d00814c6554" />
+
 
 ## 🚀 Getting Started
 
